@@ -1,0 +1,97 @@
+# Get active and discontinued products
+curl http://localhost:8080/api/products/union/active-discontinued
+
+# Get products in category OR expensive products
+curl "http://localhost:8080/api/products/union/category-or-expensive?category=Electronics&minPrice=300"
+
+# Get VIP and Premium customers
+curl http://localhost:8080/api/customers/union/vip-premium
+
+# Get customers from multiple cities
+curl "http://localhost:8080/api/customers/union/multiple-cities?city1=New%20York&city2=Los%20Angeles"
+
+# Get pending or cancelled orders
+curl http://localhost:8080/api/orders/union/pending-cancelled
+
+INTERSECT Examples
+
+# Get products that are ACTIVE AND in stock
+curl http://localhost:8080/api/products/intersect/active-instock
+
+# Get products by supplier AND category
+curl "http://localhost:8080/api/products/intersect/supplier-category?supplier=TechCorp&category=Electronics"
+
+# Get active customers AND high spenders
+curl "http://localhost:8080/api/customers/intersect/active-high-spenders?minSpent=2000"
+
+# Get customers by country AND status
+curl "http://localhost:8080/api/customers/intersect/country-status?country=USA&status=ACTIVE"
+
+# Get confirmed AND paid orders
+curl http://localhost:8080/api/orders/intersect/confirmed-paid
+
+EXCEPT Examples
+
+# Get products excluding discontinued ones
+curl http://localhost:8080/api/products/except/excluding-discontinued
+
+# Get out of stock products
+curl http://localhost:8080/api/products/except/out-of-stock
+
+# Get active customers (excluding inactive)
+curl http://localhost:8080/api/customers/except/active
+
+# Get customers not from specific country
+curl "http://localhost:8080/api/customers/except/not-from-country?excludeCountry=France"
+
+# Get undelivered orders
+curl http://localhost:8080/api/orders/except/undelivered
+
+CAST Examples
+
+# Get products by price cast to integer
+curl "http://localhost:8080/api/products/cast/by-price?minPrice=300"
+
+# Get products by code length
+curl "http://localhost:8080/api/products/cast/by-code-length?codeLength=6"
+
+# Get customers by spent amount cast
+curl "http://localhost:8080/api/customers/cast/by-spent-amount?minSpent=2000"
+
+# Get orders by minimum amount cast
+curl "http://localhost:8080/api/orders/cast/by-min-amount?minAmount=500"
+
+LEFT Examples
+
+# Get products by code prefix (first 3 chars)
+curl "http://localhost:8080/api/products/left/by-code-prefix?prefix=LAP"
+
+# Get customers by email prefix
+curl "http://localhost:8080/api/customers/left/by-email-prefix?emailPrefix=joh"
+
+RIGHT Examples
+
+# Get products by code suffix (last 3 chars)
+curl "http://localhost:8080/api/products/right/by-code-suffix?suffix=001"
+
+# Get customers by email domain
+curl "http://localhost:8080/api/customers/right/by-email-domain?emailDomain=example.com"
+
+REPLACE Examples
+
+# Get products with replaced description
+curl "http://localhost:8080/api/products/replace/description?oldText=laptop&newText=computer"
+
+# Get products with replaced name
+curl "http://localhost:8080/api/products/replace/name?searchText=Professional&replaceText=Business"
+
+# Get customers with replaced first name
+curl "http://localhost:8080/api/customers/replace/first-name?oldName=John&newName=Jonathan"
+
+Complex Operations
+
+# Get products with complex operations (CAST, LEFT, REPLACE)
+curl "http://localhost:8080/api/products/complex?minPrice=200&firstChar=L"
+
+# Get qualified VIP and Premium customers
+curl http://localhost:8080/api/customers/qualified/vip-premium

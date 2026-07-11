@@ -1,0 +1,66 @@
+# Create User
+curl -X POST http://localhost:8080/api/users \
+  -H "Content-Type: application/json" \
+  -d '{
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "username": "alicejohnson",
+    "address": {
+      "street": "789 Oak St",
+      "city": "Boston",
+      "state": "MA",
+      "zipCode": "02101",
+      "country": "USA"
+    },
+    "personalContact": {
+      "email": "alice@personal.com",
+      "phone": "555-0301",
+      "website": "www.alice.com"
+    },
+    "workContact": {
+      "email": "alice@company.com",
+      "phone": "555-0302",
+      "website": "alice.company.com"
+    },
+    "jobTitle": "DevOps Engineer",
+    "department": "Infrastructure"
+  }'
+
+# Get All Users
+curl http://localhost:8080/api/users
+
+# Get User by ID
+curl http://localhost:8080/api/users/1
+
+# Create Company
+curl -X POST http://localhost:8080/api/companies \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Global Tech Solutions",
+    "headquarters": {
+      "street": "1001 Digital Ln",
+      "city": "Austin",
+      "state": "TX",
+      "zipCode": "78701",
+      "country": "USA"
+    },
+    "contact": {
+      "email": "info@globaltech.com",
+      "phone": "1-800-GLOBAL",
+      "website": "www.globaltech.com"
+    },
+    "details": {
+      "registrationNumber": "REG111222",
+      "taxId": "TAX333444",
+      "foundedDate": "2008-03-10",
+      "industry": "Technology"
+    },
+    "employeeCount": 1000,
+    "ceoName": "Michael Brown"
+  }'
+
+# Get Companies by Industry
+curl http://localhost:8080/api/companies/industry/Technology
+
+# Get Users by City
+curl http://localhost:8080/api/users/city/New%20York

@@ -1,0 +1,90 @@
+Events API
+
+# Create Event with Instant timestamp
+curl -X POST http://localhost:8080/api/events \
+  -H "Content-Type: application/json" \
+  -d '{
+    "eventName": "Spring Boot Masterclass",
+    "description": "Advanced Spring Boot techniques",
+    "eventTime": "2024-08-15T09:00:00Z",
+    "location": "San Francisco Convention Center",
+    "status": "SCHEDULED"
+  }'
+
+# Get all events
+curl http://localhost:8080/api/events
+
+# Get events in next 48 hours
+curl http://localhost:8080/api/events/after/48
+
+# Get events between two Instant timestamps
+curl "http://localhost:8080/api/events/between?startTime=2024-08-01T00:00:00Z&endTime=2024-08-31T23:59:59Z"
+
+# Get recent events (created in last 720 minutes / 12 hours)
+curl http://localhost:8080/api/events/recent/720
+
+# Get active events (not cancelled)
+curl http://localhost:8080/api/events/active
+
+# Cancel specific event
+curl -X POST http://localhost:8080/api/events/1/cancel
+
+# Update event
+curl -X PUT http://localhost:8080/api/events/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "eventName": "Spring Boot Masterclass 2024",
+    "description": "Advanced Spring Boot techniques",
+    "eventTime": "2024-08-15T09:00:00Z",
+    "location": "San Francisco Convention Center",
+    "status": "ONGOING"
+  }'
+
+# Delete event
+curl -X DELETE http://localhost:8080/api/events/1
+
+Publications API with Year Type
+
+# Create Publication with Year type
+curl -X POST http://localhost:8080/api/publications \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Clean Code: A Handbook of Agile Software Craftsmanship",
+    "author": "Robert C. Martin",
+    "isbn": "978-0132350884",
+    "publicationYear": 2008,
+    "copyrightYear": 2008,
+    "publisher": "Prentice Hall",
+    "pageCount": 464,
+    "rating": 4.8
+  }'
+
+# Get all publications
+curl http://localhost:8080/api/publications
+
+# Get publications by year
+curl http://localhost:8080/api/publications/year/2023
+
+# Get publications from 2020 onwards
+curl http://localhost:8080/api/publications/from-year/2020
+
+# Get publications between year range
+curl "http://localhost:8080/api/publications/year-range?startYear=2015&endYear=2023"
+
+# Get publications by author and year
+curl "http://localhost:8080/api/publications/author/Robert%20C.%20Martin/year/2008"
+
+# Get high-rated publications (rating >= 4.5)
+curl http://localhost:8080/api/publications/high-rated/4.5
+
+# Update publication
+curl -X PUT http://localhost:8080/api/publications/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Clean Code: A Handbook of Agile Software Craftsmanship (Updated)",
+    "author": "Robert C. Martin",
+    "rating": 4.9
+  }'
+
+# Delete publication
+curl -X DELETE http://localhost:8080/api/publications/1
